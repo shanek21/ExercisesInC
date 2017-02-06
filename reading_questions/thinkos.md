@@ -4,26 +4,32 @@
 ### Compilation
 
 1) Give an example of a feature common in interpreted languages that is rare in compiled languages.
-Dynamically typed variables.
+
+_Dynamically typed variables._
 
 2) Name two advantages of static typing over dynamic typing.
-A programmer can tell the type of each variable by looking at the program and there will likely be less errors at run-time.
+
+_A programmer can tell the type of each variable by looking at the program and there will likely be less errors at run-time._
 
 3) Give an example of a static semantic error.
-A variable of type int being passed into a function that expects a char.
+
+_A variable of type int being passed into a function that expects a char._
 
 4) What are two reasons you might want to turn off code optimization?
-Optimization makes code take longer to compile and sometimes reveals weird bugs that weren't present when optimization was off.
+
+_Optimization makes code take longer to compile and sometimes reveals weird bugs that weren't present when optimization was off._
 
 5) When you run `gcc` with `-S`, why might the results look different on different computers?
-Different systems have different architectures.
 
-6) If you spell a variable name wrong, or if you spell a function name wrong, 
-the error messages you get might look very different.  Why?
-The linker will report an incorrect function name.
+_Different systems have different architectures._
+
+6) If you spell a variable name wrong, or if you spell a function name wrong, the error messages you get might look very different.  Why?
+
+_The linker will report an incorrect function name._
 
 7) What is a segmentation fault?
-The error that occurs when attempting to read or write to an incorrect memory location.
+
+_The error that occurs when attempting to read or write to an incorrect memory location._
 
 
 ## Chapter 2
@@ -32,19 +38,24 @@ The error that occurs when attempting to read or write to an incorrect memory lo
 ### Processes
 
 1) Give a real-world example of virtualization (ideally not one of the ones in the book).
-A VPN makes it feel like your internet connection is directly in a different location.
+
+_A VPN makes it feel like your internet connection is directly in a different location._
 
 2) What is the difference between a program and a process?
-A process is an object that represents a running program.
+
+_A process is an object that represents a running program._
 
 3) What is the primary purpose of the process abstraction?  What illusion does the process abstraction create?
-To isolate running programs to make things easier to understand for programmers. It creates the illusion that everything is neatly ordered and less intertwined.
+
+_To isolate running programs to make things easier to understand for programmers. It creates the illusion that everything is neatly ordered and less intertwined._
 
 4) What is the kernel?
-The portion of the operating system that creates threads, interfaces software to hardware, and other core responsibilities.
+
+_The portion of the operating system that creates threads, interfaces software to hardware, and other core responsibilities._
 
 5) What is a daemon?
-A process that runs in the background and provides operating system services.
+
+_A process that runs in the background and provides operating system services._
  
 
 ## Chapter 3
@@ -53,41 +64,52 @@ A process that runs in the background and provides operating system services.
 ### Virtual memory
 
 1) The Georgian alphabet has 33 letters.  How many bit are needed to specify a letter?
-5 bits gives you 32 options, so 6 bits are required.
+
+_5 bits gives you 32 options, so 6 bits are required._
 
 2) In the UTF-16 character encoding, the binary representation of a character can take up to 32 bits.  
 Ignoring the details of the encoding scheme, how many different characters can be represented?
-2^32 or 4,294,967,296 characters.
+
+_2^32 or 4,294,967,296 characters._
 
 3) What is the difference between "memory" and "storage" as defined in Think OS?
-Memory is lost with power (volatile) storage is not (non-volatile).
+
+_Memory is lost with power (volatile) storage is not (non-volatile)._
 
 4) What is the difference between a GiB and a GB?  What is the percentage difference in their sizes?
-GiB: gibibyte, 2^30 or 1,073,741,824 bytes. GB: gigabyte, 10^9 or 1,000,000,000 bytes. GiB/GB is 1.07.
+
+_GiB: gibibyte, 2^30 or 1,073,741,824 bytes. GB: gigabyte, 10^9 or 1,000,000,000 bytes. GiB/GB is 1.07._
 
 5) How does the virtual memory system help isolate processes from each other?
-Virtual memory makes it such that one process cannot generate a virtual address of memory for another process.
+
+_Virtual memory makes it such that one process cannot generate a virtual address of memory for another process._
 
 6) Why do you think the stack and the heap are usually located at opposite ends of the address space?
-If the stack was right on top of the heap, then every time the heap grew, each element in the stack would have to be displaced by the size of the new element in the heap.
+
+_If the stack was right on top of the heap, then every time the heap grew, each element in the stack would have to be displaced by the size of the new element in the heap._
 
 7) What Python data structure would you use to represent a sparse array?
-A dictionary.
+
+_A dictionary._
 
 8) What is a context switch?
-When the OS interrupts a process, saves the process' state, and then switches to running another process.
+
+_When the OS interrupts a process, saves the process' state, and then switches to running another process._
 
 In this directory, you should find a subdirectory named `aspace` that contains `aspace.c`.  Run it on your computer and compare your results to mine.
   
 1) Add a second call to `malloc` and check whether the heap on your system grows up (toward larger addresses).
-0x1332010 and 0x13320a0. Grows up.
+
+_0x1332010 and 0x13320a0. Grows up._
 
 2) Add a function that prints the address of a local variable, and check whether the stack grows down.
-0x7ffef79e2bdc and 0x7ffef79e2bd8. Grows down.
+
+_0x7ffef79e2bdc and 0x7ffef79e2bd8. Grows down._
 
 3) Choose a random number between 1 and 32, and allocate two chunks with that size.  
 How much space is there between them?  Hint: Google knows how to subtract hexadecimal numbers.
-The amount of space between them is the size of the allocated chunks. In my case, 20.
+
+_The amount of space between them is the size of the allocated chunks. In my case, 20._
 
 ## Chapter 4
 
