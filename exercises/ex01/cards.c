@@ -1,11 +1,17 @@
+// cards.c
+// Card counting program
+// Shane Kelly
+
 #include <stdio.h>
 #include <stdlib.h>
 
+// Ask the user for a new card
 void prompt_for_card(char *card_name) {
   puts("Enter the card_name: ");
   scanf("%2s", card_name);
 }
 
+// Update val with the value of the given card
 void determine_val(int *val, char *card_name) {
   switch(card_name[0]) {
   case 'K':
@@ -26,6 +32,7 @@ void determine_val(int *val, char *card_name) {
   }
 }
 
+// Update count based on val
 void change_count(int *count, int val) {
   if ((val > 2) && (val < 7)) {
     *count = *count + 1;
