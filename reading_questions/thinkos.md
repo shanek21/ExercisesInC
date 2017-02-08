@@ -119,19 +119,32 @@ _The amount of space between them is the size of the allocated chunks. In my cas
 1) What abstractions do file systems provide?  Give an example of something that is logically 
 true about files systems but not true of their implementations.
 
+_That a name of a file maps to its contents. Files are byte-based, while the storage they live in is block-based. A file system abstracts this such that a programmer doesn't have to worry about the transformation from byte to block._
+
 2) What information do you imagine is stored in an `OpenFileTableEntry`?
+
+_The contents of an opened file and how much of the file has been read._
 
 3) What are some of the ways operating systems deal with the relatively slow performance of persistent storage?
 
+_By interrupting the process, completing other tasks, and returning when the data has arrived Also, block transfers, prefetching, buffering, and caching._
+
 4) Suppose your program writes a file and prints a message indicating that it is done writing.  
-Then a power cut crashes your computer.  After you restore power and reboot the computer, you find that the 
-file you wrote is not there.  What happened?
+Then a power cut crashes your computer.  After you restore power and reboot the computer, you find that the file you wrote is not there.  What happened?
+
+_That file could have been written into main memory (but not yet written to disk), which is volatile and becomes lost if power is cut. Writes to disk normally only happen when there is at least one block of data to write._
 
 5) Can you think of one advantage of a File Allocation Table over a UNIX inode?  Or an advantage of a inode over a FAT?
 
+_Inode can only hold 8 TiB of metadata. We need more!._
+
 6) What is overhead?  What is fragmentation?
 
+_Overhead is the space not used by actual data (such as space used by the allocator). Fragmentation is the space not used by blocks._
+
 7) Why is the "everything is a file" principle a good idea?  Why might it be a bad idea?
+
+_Treating everything as a file, or a stream of bytes, allows programs to become more versatile. If a program can accept file input, it can also accept other input sources such as the piped output of another program._
 
 If you would like to learn more about file systems, a good next step is to learn about journaling file systems.  
 Start with [this Wikipedia article](https://en.wikipedia.org/wiki/Journaling_file_system), then 
