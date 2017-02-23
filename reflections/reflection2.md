@@ -32,8 +32,8 @@ For sprint 2, my team read through and completed the reading questions for chapt
 
 ### Question
 
-?
+Why don't operating systems optimize for a specific file system, and only support that single file system? What trend does this point to in computing?
 
 ### Solution
 
-!
+Many factors lead to a good file system such as speed, minimal space overhead, minimal fragmentation, and maximum contiguity. No one file system will be able to perfect all desireable traits - different file systems will be better suited for different tasks. As such, an operating system should be able to accomodate many of such file systems. This creates an infrastructure that is easy for new file systems to grow into as tech progresses - this "room for growth" trend is ever-present in computing.
