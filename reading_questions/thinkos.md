@@ -3,33 +3,33 @@
 
 ### Compilation
 
-1) Give an example of a feature common in interpreted languages that is rare in compiled languages.
+**1) Give an example of a feature common in interpreted languages that is rare in compiled languages.**
 
-_Dynamically typed variables._
+Dynamically typed variables.
 
-2) Name two advantages of static typing over dynamic typing.
+**2) Name two advantages of static typing over dynamic typing.**
 
-_A programmer can tell the type of each variable by looking at the program and there will likely be less errors at run-time._
+A programmer can tell the type of each variable by looking at the program and there will likely be less errors at run-time.
 
-3) Give an example of a static semantic error.
+**3) Give an example of a static semantic error.**
 
-_A variable of type int being passed into a function that expects a char._
+A variable of type int being passed into a function that expects a char.
 
-4) What are two reasons you might want to turn off code optimization?
+**4) What are two reasons you might want to turn off code optimization?**
 
-_Optimization makes code take longer to compile and sometimes reveals weird bugs that weren't present when optimization was off._
+Optimization makes code take longer to compile and sometimes reveals weird bugs that weren't present when optimization was off.
 
-5) When you run `gcc` with `-S`, why might the results look different on different computers?
+**5) When you run `gcc` with `-S`, why might the results look different on different computers?**
 
-_Different systems have different architectures._
+Different systems have different architectures.
 
-6) If you spell a variable name wrong, or if you spell a function name wrong, the error messages you get might look very different.  Why?
+**6) If you spell a variable name wrong, or if you spell a function name wrong, the error messages you get might look very different.  Why?**
 
-_The linker will report an incorrect function name._
+The linker will report an incorrect function name.
 
-7) What is a segmentation fault?
+**7) What is a segmentation fault?**
 
-_The error that occurs when attempting to read or write to an incorrect memory location._
+The error that occurs when attempting to read or write to an incorrect memory location.
 
 
 ## Chapter 2
@@ -37,25 +37,25 @@ _The error that occurs when attempting to read or write to an incorrect memory l
 
 ### Processes
 
-1) Give a real-world example of virtualization (ideally not one of the ones in the book).
+**1) Give a real-world example of virtualization (ideally not one of the ones in the book).**
 
-_A VPN makes it feel like your internet connection is directly in a different location._
+A VPN makes it feel like your internet connection is directly in a different location.
 
-2) What is the difference between a program and a process?
+**2) What is the difference between a program and a process?**
 
-_A process is an object that represents a running program._
+A process is an object that represents a running program.
 
-3) What is the primary purpose of the process abstraction?  What illusion does the process abstraction create?
+**3) What is the primary purpose of the process abstraction?  What illusion does the process abstraction create?**
 
-_To isolate running programs to make things easier to understand for programmers. It creates the illusion that everything is neatly ordered and less intertwined._
+To isolate running programs to make things easier to understand for programmers. It creates the illusion that everything is neatly ordered and less intertwined.
 
-4) What is the kernel?
+**4) What is the kernel?**
 
-_The portion of the operating system that creates threads, interfaces software to hardware, and other core responsibilities._
+The portion of the operating system that creates threads, interfaces software to hardware, and other core responsibilities.
 
-5) What is a daemon?
+**5) What is a daemon?**
 
-_A process that runs in the background and provides operating system services._
+A process that runs in the background and provides operating system services.
  
 
 ## Chapter 3
@@ -63,88 +63,88 @@ _A process that runs in the background and provides operating system services._
 
 ### Virtual memory
 
-1) The Georgian alphabet has 33 letters.  How many bit are needed to specify a letter?
+**1) The Georgian alphabet has 33 letters.  How many bit are needed to specify a letter?**
 
-_5 bits gives you 32 options, so 6 bits are required._
+5 bits gives you 32 options, so 6 bits are required.
 
-2) In the UTF-16 character encoding, the binary representation of a character can take up to 32 bits.  
-Ignoring the details of the encoding scheme, how many different characters can be represented?
+**2) In the UTF-16 character encoding, the binary representation of a character can take up to 32 bits.  
+Ignoring the details of the encoding scheme, how many different characters can be represented?**
 
-_2^32 or 4,294,967,296 characters._
+2^32 or 4,294,967,296 characters.
 
-3) What is the difference between "memory" and "storage" as defined in Think OS?
+**3) What is the difference between "memory" and "storage" as defined in Think OS?**
 
-_Memory is lost with power (volatile) storage is not (non-volatile)._
+Memory is lost with power (volatile) storage is not (non-volatile).
 
-4) What is the difference between a GiB and a GB?  What is the percentage difference in their sizes?
+**4) What is the difference between a GiB and a GB?  What is the percentage difference in their sizes?**
 
-_GiB: gibibyte, 2^30 or 1,073,741,824 bytes. GB: gigabyte, 10^9 or 1,000,000,000 bytes. GiB/GB is 1.07._
+GiB: gibibyte, 2^30 or 1,073,741,824 bytes. GB: gigabyte, 10^9 or 1,000,000,000 bytes. GiB/GB is 1.07.
 
-5) How does the virtual memory system help isolate processes from each other?
+**5) How does the virtual memory system help isolate processes from each other?**
 
-_Virtual memory makes it such that one process cannot generate a virtual address of memory for another process._
+Virtual memory makes it such that one process cannot generate a virtual address of memory for another process._
 
-6) Why do you think the stack and the heap are usually located at opposite ends of the address space?
+**6) Why do you think the stack and the heap are usually located at opposite ends of the address space?**
 
-_If the stack was right on top of the heap, then every time the heap grew, each element in the stack would have to be displaced by the size of the new element in the heap._
+If the stack was right on top of the heap, then every time the heap grew, each element in the stack would have to be displaced by the size of the new element in the heap.
 
-7) What Python data structure would you use to represent a sparse array?
+**7) What Python data structure would you use to represent a sparse array?**
 
-_A dictionary._
+A dictionary.
 
-8) What is a context switch?
+**8) What is a context switch?**
 
-_When the OS interrupts a process, saves the process' state, and then switches to running another process._
+When the OS interrupts a process, saves the process' state, and then switches to running another process.
 
 In this directory, you should find a subdirectory named `aspace` that contains `aspace.c`.  Run it on your computer and compare your results to mine.
   
-1) Add a second call to `malloc` and check whether the heap on your system grows up (toward larger addresses).
+**1) Add a second call to `malloc` and check whether the heap on your system grows up (toward larger addresses).**
 
-_0x1332010 and 0x13320a0. Grows up._
+0x1332010 and 0x13320a0. Grows up.
 
-2) Add a function that prints the address of a local variable, and check whether the stack grows down.
+**2) Add a function that prints the address of a local variable, and check whether the stack grows down.**
 
-_0x7ffef79e2bdc and 0x7ffef79e2bd8. Grows down._
+0x7ffef79e2bdc and 0x7ffef79e2bd8. Grows down.
 
-3) Choose a random number between 1 and 32, and allocate two chunks with that size.  
-How much space is there between them?  Hint: Google knows how to subtract hexadecimal numbers.
+**3) Choose a random number between 1 and 32, and allocate two chunks with that size.  
+How much space is there between them?  Hint: Google knows how to subtract hexadecimal numbers.**
 
-_The amount of space between them is the size of the allocated chunks. In my case, 20._
+The amount of space between them is the size of the allocated chunks. In my case, 20.
 
 ## Chapter 4
 
 
 ### Files and file systems
 
-1) What abstractions do file systems provide?  Give an example of something that is logically 
-true about files systems but not true of their implementations.
+**1) What abstractions do file systems provide?  Give an example of something that is logically 
+true about files systems but not true of their implementations.**
 
-_That a name of a file maps to its contents. Files are byte-based, while the storage they live in is block-based. A file system abstracts this such that a programmer doesn't have to worry about the transformation from byte to block._
+That a name of a file maps to its contents. Files are byte-based, while the storage they live in is block-based. A file system abstracts this such that a programmer doesn't have to worry about the transformation from byte to block.
 
-2) What information do you imagine is stored in an `OpenFileTableEntry`?
+**2) What information do you imagine is stored in an `OpenFileTableEntry`?**
 
-_The contents of an opened file and how much of the file has been read._
+The contents of an opened file and how much of the file has been read.
 
-3) What are some of the ways operating systems deal with the relatively slow performance of persistent storage?
+**3) What are some of the ways operating systems deal with the relatively slow performance of persistent storage?**
 
-_By interrupting the process, completing other tasks, and returning when the data has arrived Also, block transfers, prefetching, buffering, and caching._
+By interrupting the process, completing other tasks, and returning when the data has arrived Also, block transfers, prefetching, buffering, and caching.
 
-4) Suppose your program writes a file and prints a message indicating that it is done writing.  
-Then a power cut crashes your computer.  After you restore power and reboot the computer, you find that the file you wrote is not there.  What happened?
+**4) Suppose your program writes a file and prints a message indicating that it is done writing.  
+Then a power cut crashes your computer.  After you restore power and reboot the computer, you find that the file you wrote is not there.  What happened?**
 
-_That file could have been written into main memory (but not yet written to disk), which is volatile and becomes lost if power is cut. Writes to disk normally only happen when there is at least one block of data to write._
+That file could have been written into main memory (but not yet written to disk), which is volatile and becomes lost if power is cut. Writes to disk normally only happen when there is at least one block of data to write.
 
-5) Can you think of one advantage of a File Allocation Table over a UNIX inode?  Or an advantage of a inode over a FAT?
+**5) Can you think of one advantage of a File Allocation Table over a UNIX inode?  Or an advantage of a inode over a FAT?**
 
-_Inode can only hold 8 TiB of metadata. We need more!._
+Inode can only hold 8 TiB of metadata. We need more!.
 
-6) What is overhead?  What is fragmentation?
+**6) What is overhead?  What is fragmentation?**
 
-_Overhead is the space not used by actual data (such as space used by the allocator). Fragmentation is the space not used by blocks._
+Overhead is the space not used by actual data (such as space used by the allocator). Fragmentation is the space not used by blocks.
 
-7) Why is the "everything is a file" principle a good idea?  Why might it be a bad idea?
+**7) Why is the "everything is a file" principle a good idea?  Why might it be a bad idea?**
 
-_Treating everything as a file, or a stream of bytes, allows programs to become more versatile. If a program can accept file input, it can also accept other input sources such as the piped output of another program._
+Treating everything as a file, or a stream of bytes, allows programs to become more versatile. If a program can accept file input, it can also accept other input sources such as the piped output of another program.
 
 If you would like to learn more about file systems, a good next step is to learn about journaling file systems.  
 Start with [this Wikipedia article](https://en.wikipedia.org/wiki/Journaling_file_system), then 
@@ -157,23 +157,36 @@ Also consider reading [this USENIX paper](https://www.usenix.org/legacy/event/us
 
 ### Bits and bytes
 
-1) Suppose you have the value 128 stored as an unsigned 8-bit number.  What happens if you convert 
-it to a 16-bit number and accidentally apply sign extension?
+**1) Suppose you have the value 128 stored as an unsigned 8-bit number.  What happens if you convert 
+it to a 16-bit number and accidentally apply sign extension?**
 
-2) Write a C expression that computes the two's complement of 12 using the XOR bitwise operator. 
-Try it out and confirm that the result is interpreted as -12.
+8 bit 128: 10000000
+16 bit 128: 00000000 10000000
+With accidental sign extension: 11111111 10000000
 
-3) Can you guess why IEEE floating-point uses biased integers to represent the exponent rather than a
-sign bit or two's complement?
+**2) Write a C expression that computes the two's complement of 12 using the XOR bitwise operator. 
+Try it out and confirm that the result is interpreted as -12.**
 
-4) Following the example in Section 5.4, write the 32-bit binary representation of -13 in single precision 
-IEEE floating-point.  What would you get if you accidentally interpreted this value as an integer?
+12:  01100
+-12: 11100
 
-5) Write a function that takes a string and converts from lower-case to upper-case by flipping the sixth bit.  
+Two's complement of 01100 = 01100 ^ 10000
+
+**3) Can you guess why IEEE floating-point uses biased integers to represent the exponent rather than a
+sign bit or two's complement?**
+
+Maybe biased integers are faster to create and compare to other numbers?
+
+**4) Following the example in Section 5.4, write the 32-bit binary representation of -13 in single precision 
+IEEE floating-point.  What would you get if you accidentally interpreted this value as an integer?**
+
+If a single precision IEEE float of value -13.0 was accidentally interpretted as an int, then its value would be perceived as -1051721728.
+
+**5) Write a function that takes a string and converts from lower-case to upper-case by flipping the sixth bit.  
 As a challenge, you can make a faster version by reading the string 32 or 64 bits at a time, rather than one
-character at a time.  This optimization is made easier if the length of the string is a multiple of 4 or 8 bytes.
+character at a time.  This optimization is made easier if the length of the string is a multiple of 4 or 8 bytes.**
 
-
+`letter ^= 32;`
 
 ## Chapter 6
 
