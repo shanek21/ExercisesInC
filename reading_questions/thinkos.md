@@ -193,32 +193,48 @@ character at a time.  This optimization is made easier if the length of the stri
 
 ### Memory management
 
-1) Which memory management functions would you expect to take constant time?  Which ones take time proportional to the size of the allocated chunk?
+**1) Which memory management functions would you expect to take constant time?  Which ones take time proportional to the size of the allocated chunk?**
 
-2) For each of the following memory errors, give an example of something that might go wrong:
+Constant time: malloc, free
 
-a) Reading from unallocated memory.
+Linear time: calloc, realloc
 
-b) Writing to unallocated memory.
+**2) For each of the following memory errors, give an example of something that might go wrong:**
 
-c) Reading from a freed chunk.
+**a) Reading from unallocated memory.**
 
-d) Writing to a freed chunk.
+The value read could be nonsensical.
 
-e) Failing to free a chunk that is no longer needed.
+**b) Writing to unallocated memory.**
 
+Something important could be overwritten.
 
-3) Run
+**c) Reading from a freed chunk.**
+
+The value read could be nonsensical.
+
+**d) Writing to a freed chunk.**
+
+Something important could be overwritten.
+
+**e) Failing to free a chunk that is no longer needed.**
+
+If enough unneeded chunks are not freed, then they could build up until you run out of memory to allocate. At that point, any additional calls to malloc will return NULL.
+
+**3) Run**
 
     ps aux --sort rss
 
-to see a list of processes sorted by RSS, which is "resident set size", the amount of physical 
-memory a process has.  Which processes are using the most memory?
+**to see a list of processes sorted by RSS, which is "resident set size", the amount of physical 
+memory a process has.  Which processes are using the most memory?**
 
-4) What's wrong with allocating a large number of small chunks?  What can you do to mitigate the problem?
+Of the top 20 processes using the most memory, 17 of them are Google Chrome.
 
-If you want to know more about how malloc works, read 
-[Doug Lea's paper about dlmalloc](http://gee.cs.oswego.edu/dl/html/malloc.html)
+**4) What's wrong with allocating a large number of small chunks?  What can you do to mitigate the problem?**
+
+The minimum chunk size that malloc can allocate on most systems is 16 bytes. Thus, allocating a large number of small chunks would be very space inefficient. This problem could be solved by using arrays to allocate the structures.
+
+**If you want to know more about how malloc works, read [Doug Lea's paper about dlmalloc](http://gee.cs.oswego.edu/dl/html/malloc.html).**
 
 
 
