@@ -55,6 +55,10 @@ void print_list(Node **list) {
  */
 int pop(Node **list) {
     // FILL THIS IN!
+    //int val = (*list)->val;
+    //Node *next_head = (*list)->next;
+    //free(*list);
+    //*list = next_head;
     return 0;
 }
 
@@ -66,6 +70,7 @@ int pop(Node **list) {
  */
 void push(Node **list, int val) {
     // FILL THIS IN!
+    *list = make_node(val, *list);
 }
 
 
