@@ -54,12 +54,20 @@ void print_list(Node **list) {
  * returns: int or -1 if the list is empty
  */
 int pop(Node **list) {
-    // FILL THIS IN!
-    //int val = (*list)->val;
-    //Node *next_head = (*list)->next;
-    //free(*list);
-    //*list = next_head;
-    return 0;
+    int val;
+    Node *next_node;
+
+    // Return -1 if the list is empty
+    if (*list == NULL) {
+        return -1;
+    }
+    
+    val = (*list)->val; // store the value of the head node
+    next_node = (*list)->next; // store the new head
+    free(*list); // free the old head
+    *list = next_node; // assign the new head
+
+    return val;
 }
 
 
@@ -69,7 +77,6 @@ int pop(Node **list) {
  * val: value to add
  */
 void push(Node **list, int val) {
-    // FILL THIS IN!
     *list = make_node(val, *list);
 }
 
@@ -84,8 +91,24 @@ void push(Node **list, int val) {
  * returns: number of nodes removed
  */
 int remove_by_value(Node **list, int val) {
-    // FILL THIS IN!
-    return 0;
+    Node *prev_node = NULL;
+    Node *curr_node = *list;
+
+    // Find first node with specified value and the node before it
+    while (curr_node != NULL && curr_node->val != val) {
+        prev_node = curr_node;
+        curr_node = curr_node->next;
+    }
+
+    // If the end of LL was reached before value was found
+    if (curr_node == NULL) {
+        return 0; // no node removed
+    }
+
+    prev_node->next = curr_node->next; // remove curr_node from LL
+    free(curr_node); // free curr_node
+
+    return 1;
 }
 
 
@@ -96,7 +119,20 @@ int remove_by_value(Node **list, int val) {
  * list: pointer to pointer to Node
  */
 void reverse(Node **list) {
-    // FILL THIS IN!
+    Node *prev_node = NULL;
+    Node *curr_node = *list;
+    Node *next_node;
+
+    while (curr_node != NULL) {
+        next_node = curr_node->next; // move next_node forward in LL
+
+        curr_node->next = prev_node; // reverse the current node
+
+        prev_node = curr_node; // move prev_node forward in LL
+        curr_node = next_node; // move curr_node forward in LL
+    }
+
+    *list = prev_node; // assign the head
 }
 
 
