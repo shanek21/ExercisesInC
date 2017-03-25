@@ -1,3 +1,7 @@
+/*
+ * Tee reads from stdin and outputs to both stdout and a file
+ */
+
 #include <stdio.h>
 #include <unistd.h>
 
