@@ -99,3 +99,38 @@ int main(int argc, char *argv[])
     
     exit(0);
 }
+
+/*
+ * gcc -Wall -o fork fork.c
+ *
+ * ./fork 1
+ * Creating child 0.
+ * Hello from the parent.
+ * Hello from child 0.
+ * Child 26187 exited with error code 0.
+ * Elapsed time = 0.000131 seconds.
+ *
+ * ./fork 2
+ * Creating child 0.
+ * Creating child 1.
+ * Hello from child 0.
+ * Hello from the parent.
+ * Child 26212 exited with error code 0.
+ * Hello from child 1.
+ * Child 26213 exited with error code 1.
+ * Elapsed time = 1.000433 seconds.
+ *
+ * ./fork 3
+ * Creating child 0.
+ * Creating child 1.
+ * Creating child 2.
+ * Hello from the parent.
+ * Hello from child 0.
+ * Child 26238 exited with error code 0.
+ * Hello from child 1.
+ * Child 26239 exited with error code 1.
+ * Hello from child 2.
+ * Child 26240 exited with error code 2.
+ * Elapsed time = 2.001006 seconds.
+ *
+ */
