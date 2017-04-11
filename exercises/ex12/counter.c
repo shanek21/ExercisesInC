@@ -12,6 +12,8 @@
 
 #define NUM_CHILDREN 2
 
+int test = 5;
+
 // UTILITY FUNCTIONS
 
 /*  perror_exit
@@ -157,16 +159,20 @@ void child_code (Shared *shared)
     printf ("Starting child at counter %d\n", shared->counter);
 
     while (1) {
-	    if (shared->counter >= shared->end) {
-	        return;
-	    }
-	    shared->array[shared->counter]++;
-	    shared->counter++;
+        if (shared->counter >= shared->end) {
+            printf("%d\n", test++);
+            int stack_var = 89;
+            printf("address of local %p\n", &stack_var);
+            return;
+        }
+        shared->array[shared->counter]++;
+        shared->counter++;
 
-	    if (shared->counter % 100000 == 0) {
-	        printf ("%d\n", shared->counter);
-	    }
+        if (shared->counter % 100000 == 0) {
+            printf ("%d\n", shared->counter);
+        }
     }
+
 }
 
 /*  entry
