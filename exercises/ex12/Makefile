@@ -1,3 +1,4 @@
+all: counter counter_mutex
 
 counter: counter.c
 	gcc -Wall -o counter counter.c -lpthread

@@ -12,6 +12,8 @@
 
 #define NUM_CHILDREN 2
 
+int test = 5;
+
 // UTILITY FUNCTIONS
 
 /*  perror_exit
@@ -80,7 +82,7 @@ typedef struct {
     int counter;
     int end;
     int *array;
-    Semaphore *mutex;
+    Semaphore* sem;
 } Shared;
 
 /*  make_shared
@@ -103,7 +105,9 @@ Shared *make_shared (int end)
     for (i=0; i<shared->end; i++) {
         shared->array[i] = 0;
     }
-    shared->mutex = make_semaphore(1);
+
+    shared->sem = make_semaphore(1);
+
     return shared;
 }
 
@@ -159,9 +163,9 @@ void child_code (Shared *shared)
     /*printf ("Starting child at counter %d\n", shared->counter);*/
 
     while (1) {
-        sem_wait(shared->mutex);
+        sem_wait(shared->sem);
         if (shared->counter >= shared->end) {
-            sem_signal(shared->mutex);
+            sem_signal(shared->sem);
             return;
         }
 
@@ -171,8 +175,10 @@ void child_code (Shared *shared)
         if (shared->counter % 100000 == 0) {
             /*printf ("%d\n", shared->counter);*/
         }
-        sem_signal(shared->mutex);
+
+        sem_signal(shared->sem);
     }
+
 }
 
 /*  entry
