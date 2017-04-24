@@ -43,6 +43,8 @@ int pop(Node **head) {
     retval = (*head)->val;
     *head = next_node;
 
+    free(next_node);
+
     return retval;
 }
 
@@ -71,6 +73,7 @@ int remove_by_value(Node **head, int val) {
 	if (node->next->val == val) {
 	    victim = node->next;
 	    node->next = victim->next;
+            free(victim);
 	    return 1;
 	}
     }
@@ -96,6 +99,9 @@ void reverse(Node **head) {
 	next = temp;
     }
     *head = node;
+
+    free(temp);
+    free(next);
 }
 
 // Adds a new element to the list before the indexed element.
@@ -118,6 +124,16 @@ int insert_by_index(Node **head, int val, int index) {
     if (node == NULL) return -1;
     node->next = make_node(val, node->next);
     return 0;
+}
+
+void free_list(Node *head) {
+    Node *current = head;
+    Node *temp;
+
+    for (; current!=NULL; current=current->next) {
+        temp = current;
+        free(temp);
+    }
 }
 
 // Makes a mysterious data structure.
@@ -152,6 +168,8 @@ int main() {
     printf("test_list\n");
     print_list(test_list);
 
+    free_list(test_list);
+
     // make an empty list
     printf("empty\n");
     Node *empty = NULL;
@@ -159,9 +177,10 @@ int main() {
     // add an element to the empty list
     insert_by_index(&empty, 1, 0);
     print_list(empty);
+    free(empty);
 
     Node *something = make_something();
-    free(something);
+    free_list(something);
 
     return 0;
 }
