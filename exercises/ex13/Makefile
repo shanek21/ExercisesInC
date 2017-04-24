@@ -1,6 +1,8 @@
 CC = gcc
 CFLAGS = -g -Wall -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
-LIBS = -lglib-2.0  
+LIBS = -lglib-2.0
+
+all: word_count mem_errors list_errors
 
 word_count: word_count.c
 	$(CC) -o $@.o $^ $(CFLAGS) $(LIBS)

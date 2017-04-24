@@ -41,9 +41,8 @@ int pop(Node **head) {
 
     next_node = (*head)->next;
     retval = (*head)->val;
+    free(*head);
     *head = next_node;
-
-    free(next_node);
 
     return retval;
 }
@@ -118,21 +117,27 @@ int insert_by_index(Node **head, int val, int index) {
     }
 
     for (i=0; i<index-1; i++) {
-	if (node == NULL) return -1;
+        if (node == NULL) {
+            free(node);
+            return -1;
+        }
 	node = node->next;
     }
-    if (node == NULL) return -1;
+    if (node == NULL) {
+        free(node);
+        return -1;
+    }
     node->next = make_node(val, node->next);
     return 0;
 }
 
 void free_list(Node *head) {
     Node *current = head;
-    Node *temp;
+    Node *next;
 
-    for (; current!=NULL; current=current->next) {
-        temp = current;
-        free(temp);
+    for (; current!=NULL; current=next) {
+        next = current->next;
+        free(current);
     }
 }
 
@@ -167,7 +172,6 @@ int main() {
 
     printf("test_list\n");
     print_list(test_list);
-
     free_list(test_list);
 
     // make an empty list
@@ -177,7 +181,7 @@ int main() {
     // add an element to the empty list
     insert_by_index(&empty, 1, 0);
     print_list(empty);
-    free(empty);
+    free_list(empty);
 
     Node *something = make_something();
     free_list(something);

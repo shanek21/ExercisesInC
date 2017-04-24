@@ -22,6 +22,17 @@ typedef struct {
     gchar *word;
 } Pair;
 
+void hash_free(gpointer key, gpointer value, gpointer user_data)
+{
+    g_free((gchar *) key);
+    g_free((gint *) value);
+}
+
+/* Iterator that frees pairs. */
+void pair_free (gpointer value, gpointer user_data)
+{
+    g_free((Pair *) value);
+}
 
 /* Compares two key-value pairs by frequency. */
 gint compare_pair (gpointer v1, gpointer v2, gpointer user_data)
@@ -30,7 +41,6 @@ gint compare_pair (gpointer v1, gpointer v2, gpointer user_data)
     Pair *p2 = (Pair *) v2;
     return p1->freq - p2->freq;
 }
-
 
 /* Iterator that prints pairs. */
 void pair_printor (gpointer value, gpointer user_data)
@@ -108,6 +118,7 @@ int main (int argc, char** argv)
 	for (i=0; array[i] != NULL; i++) {
 	    incr(hash, array[i]);
 	}
+        g_strfreev(array);
     }
     fclose (fp);
 
@@ -121,8 +132,8 @@ int main (int argc, char** argv)
     // iterate the sequence and print the pairs
     g_sequence_foreach (seq,  (GFunc) pair_printor, NULL);
 
-    // try (unsuccessfully) to free everything
-    // (in a future exercise, we will fix the memory leaks)
+    g_hash_table_foreach(hash, (GHFunc) hash_free, NULL);
+    g_sequence_foreach(seq, (GFunc) pair_free, NULL);
     g_hash_table_destroy (hash);
     g_sequence_free (seq);
 
